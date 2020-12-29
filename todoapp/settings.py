@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
-
+import django_heroku
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -134,9 +134,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.gmail.com")
+
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "some-user@gmail.com")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "lol password")
-EMAIL_PORT = int(os.environ.get("EMAIL_PORT", "587"))
+
 EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", 'false') != "false"
 
+django_heroku.settings(locals())
