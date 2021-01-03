@@ -54,4 +54,9 @@ input[type="checkbox"] { width: 30px; }
   cursor: pointer;
 }
 
+.details {
+  float: right;
+  cursor: pointer;
+}
+
 .completed { text-decoration: line-through; }

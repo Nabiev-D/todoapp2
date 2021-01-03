@@ -1,6 +1,7 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth.models import User
+
 
 # Create your models here.
 class TodoItem(models.Model):
@@ -20,12 +21,13 @@ class TodoItem(models.Model):
 	updated = models.DateTimeField(auto_now=True)
 	owner = models.ForeignKey(
 		User, on_delete=models.CASCADE, related_name="tasks")
-	priority = models.IntegerField(
-		"Приоритет", choices=PRIORITY_CHOICES, default=PRIORITY_MEDIUM
-)
+	priority = models.IntegerField("Приоритет", choices=PRIORITY_CHOICES, default=PRIORITY_MEDIUM)
+	
 	def __str__(self):
 		return self.description.lower()
+	
 	class Meta:
 		ordering = ("-created",)
+	
 	def get_absolute_url(self):
 		return reverse("tasks:details", args=[self.pk])
